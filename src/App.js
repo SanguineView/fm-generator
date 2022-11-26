@@ -1,44 +1,36 @@
-import logo from './logo.svg';
-import Heading from './Heading'
 import { useEffect, useState } from 'react';
+import patterndiviermobile from './pattern-divider-desktop.svg'
 import axios from 'axios'
 import './App.css';
 
 function App() {
 
   const [advice, setAdvice] = useState('')
-  const [chosenAdvice, setChosenAdvice] = useState(1)
+  const [chosenAdvice, setChosenAdvice] = useState(Math.floor((Math.random() * 200) + 1))
   // const [name, setName] = useState('Generate Name')
-
-  const getAdviceNum = () => {
-    setChosenAdvice(Math.floor((Math.random() * 200) + 1))
-  }
 
   useEffect(() => {
     const randomNum = Math.floor((Math.random() * 200) + 1)
-    console.log(`Connected number is ${randomNum}`)
     axios.get(`https://api.adviceslip.com/advice/${randomNum}`)
         .then(res => {
-          setAdvice(res.data.slip.advice)
+          setAdvice(res.data.slip)
         })
   }, [])
 
-  const handleClick = (e) => {
-    getAdviceNum()
-    console.log(`Number updated to ${chosenAdvice}`)
+  const handleClick = () => {
+    setChosenAdvice(Math.floor((Math.random() * 200) + 1))
     axios.get(`https://api.adviceslip.com/advice/${chosenAdvice}`)
         .then(res => {
-          setAdvice(res.data.slip.advice)
+          setAdvice(res.data.slip)
         })
   }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Heading msg={advice}/> 
-        <button onClick={handleClick}>Gimme Another</button>
-      </header>
+        <p className="number">Advice #{advice.id}</p>
+        <p className="advice">"{advice.advice}"</p>
+        <img src={patterndiviermobile} className="divider" alt="separate"/>
+        <button onClick={handleClick} className="advice-btn" alt="Gimme Another"></button>
     </div>
   );
 }
