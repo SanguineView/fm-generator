@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import patterndiviermobile from './pattern-divider-desktop.svg'
+import pdDt from './pattern-divider-desktop.svg'
+import pdMob from './pattern-divider-mobile.svg'
 import axios from 'axios'
 import './App.css';
 
@@ -29,7 +30,8 @@ function App() {
     <div className="App">
         <p className="number">Advice #{advice.id}</p>
         <p className="advice">"{advice.advice}"</p>
-        <img src={patterndiviermobile} className="divider" alt="separate"/>
+        <img src={pdDt} className="divider dividerDt" alt="separate"/>
+        <img src={pdMob} className="divider dividerMob" alt="separate"/>
         <button onClick={handleClick} className="advice-btn" alt="Gimme Another"></button>
     </div>
   );
