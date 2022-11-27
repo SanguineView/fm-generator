@@ -1,4 +1,4 @@
-body {
+#root {
   font-family: 'Manrope', sans-serif;
   background:hsl(218, 23%, 16%);
   display:flex;
@@ -12,7 +12,7 @@ body {
   background:hsl(217, 19%, 24%);
   border-radius:10px;
   padding:50px;
-  max-width:540px;
+  width:540px;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
@@ -54,5 +54,17 @@ body {
 
 .advice-btn:hover {
   cursor: pointer;
-  box-shadow:0 2px 12px rgba(0, 255, 128,0.9);
+  box-shadow:0 0 12px rgba(0, 255, 128,0.9);
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: roll;
+  animation-timing-function: linear;
+}
+@keyframes roll {
+  from  {
+    transform: rotate(360deg);
+ }
+ to {
+    transform: rotate(0deg);
+  }	
 }
